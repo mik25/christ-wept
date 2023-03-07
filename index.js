@@ -1,7 +1,7 @@
 // index.js
 
-import { addonBuilder, serveHTTP } from 'stremio-addon-sdk';
-import fetch from 'node-fetch';
+const { addonBuilder, serveHTTP }  = require('stremio-addon-sdk')
+const fetch = require('node-fetch')
 
 // rest of the code
 
