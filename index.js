@@ -1,42 +1,48 @@
-// index.js
+// Importing required modules
+const addonBuilder = require('stremio-addon-sdk').addonBuilder;
+const http = require('http');
+const fetch = require('node-fetch');
 
-const { addonBuilder, serveHTTP }  = require('stremio-addon-sdk')
-const fetch = require('node-fetch')
-
-// rest of the code
-
-
+// Creating a new addonBuilder instance
 const builder = new addonBuilder({
     id: 'org.himymaddon',
     version: '1.0.0',
-
     name: 'HIMYM',
-
-    // Properties that determine when Stremio picks this addon
-    // this means your addon will be used for streams of the type series
     catalogs: [],
     resources: ['stream'],
     types: ['series'],
     idPrefixes: ['tt']
-})
+});
 
-// takes function(args)
-builder.defineStreamHandler(function(args) {
-    if (args.type === 'series' && args.id === 'tt0460649') {
-        // serve streams for How I Met Your Mother
+// Defining the stream handler
+builder.defineStreamHandler(({ type, id }) => {
+    if (type === 'series' && id === 'tt0460649') {
         return fetch('https://raw.githubusercontent.com/mik25/christ-wept/main/shite.m3u')
             .then(response => response.text())
             .then(data => {
                 const streams = data.split('\n')
                     .filter(line => line.startsWith('http'))
-                    .map(url => ({ url }))
-                return { streams }
-            })
+                    .map(url => ({ url }));
+                return { streams };
+            });
     } else {
-        // otherwise return no streams
-        return Promise.resolve({ streams: [] })
+        return Promise.resolve({ streams: [] });
     }
-})
+});
 
-serveHTTP(builder.getInterface(), { port: process.env.PORT || 7000 })
+// Creating the http server
+const server = http.createServer((req, res) => {
+    // Serving the addon interface
+    if (req.url === '/') {
+        res.setHeader('content-type', 'text/html');
+        res.end(builder.getInterface());
+    }
+});
+
+// Starting the server
+const port = process.env.PORT || 7000;
+server.listen(port, () => {
+    console.log(`Server started on port ${port}`);
+});
+
 
