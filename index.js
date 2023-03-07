@@ -17,7 +17,7 @@ const manifest = {
 async function getStreams(args) {
     // Check if the request is for a series with IMDb ID tt0460649 (the IMDb ID for How I Met Your Mother)
     if (args.type === "series" && args.id === "tt0460649") {
-        const url = "https://didi2.ir/bestsitcomdl/HIMYM/";
+        const url = "http://23.147.64.113/tv/Other/HowIMetYourMother/";
         const response = await axios.get(url);
         const regex = /<a href="(.*?\.(?:mp4|mkv))"/gm;
 
