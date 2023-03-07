@@ -1,19 +1,22 @@
 {
-  "name": "christ-wept",
+  "name": "iptv",
   "version": "1.0.0",
-  "description": "How i met your mother telly",
+  "description": "Por JC",
   "main": "index.js",
-  "dependencies": {
-    "axios": "^0.27.2",
-    "stremio-addon-sdk": "^1.6.10"
-  },
+  "repository": "fools",
+  "license": "help_yourself",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js",
+    "build": "node build.js",
+    "get": "node get-m3u.js"
   },
-  "author": "MikMc",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mik25/christ-wept/issues"
-  },
-  "homepage": "https://github.com/mik25/christ-wept#readme"
+  "dependencies": {
+    "async": "^2.6.1",
+    "url": "^0.11.0",
+    "needle": "^2.2.4",
+    "stremio-addon-sdk": "^1.6.2",
+    "m3u8-reader": "^1.1.0",
+    "base-64": "^0.1.0",
+    "rimraf": "^3.0.2"
+  }
 }
