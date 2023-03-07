@@ -65,7 +65,8 @@ builder.defineStreamHandler(getStreams);
 builder.defineCatalogHandler(getCatalogs);
 
 // Build and serve the addon
-const addonInterface = builder.getInterface();
-const PORT = 7000;
-const server = serveHTTP(addonInterface, { port: PORT });
-console.log(`Addon running on http://localhost:${PORT}`);
+const interface = addon.getInterface();
+
+serveHTTP(interface, { port: process.env.PORT || 7777, hostname: '0.0.0.0' });
+
+console.log(`Addon running at: http://0.0.0.0:${process.env.PORT || 7777}/stremioget/stremio/v1`);
