@@ -1,0 +1,19 @@
+{
+  "name": "christ-wept",
+  "version": "1.0.0",
+  "description": "How i met your mother telly",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "stremio-addon-sdk": "^1.6.10"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "MikMc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mik25/christ-wept/issues"
+  },
+  "homepage": "https://github.com/mik25/christ-wept#readme"
+}
